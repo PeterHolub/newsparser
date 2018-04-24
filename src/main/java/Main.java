@@ -9,7 +9,7 @@ import java.util.ArrayList;
 //Main Servlet of App (Start and Clear buttons functions)
 @WebServlet("/Main")
 public class Main extends HttpServlet {
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Parser parser = new Parser();
         String button = request.getParameter("button");
