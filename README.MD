@@ -1,5 +1,5 @@
 # News parser for http://www.pravda.com.ua
-Implementation of news parser using Java SE,JSP,JSTL tag library, Jsoup, OpenCSV, H2 database and Jetty.
+Implementation of news parser using Java SE, JSP, JSTL tag library, Jsoup, OpenCSV, H2 database and Jetty.
 ## Prerequisites
 * **JDK >= 1.8.0_131**;
 * **Apache Maven >= 3.5.2**
