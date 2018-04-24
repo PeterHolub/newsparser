@@ -10,17 +10,16 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
+
 //Class for CSV file generation
 @WebServlet("/CSVFileGenerator")
 public class CSVFileGenerator extends HttpServlet {
-    //Path where file will be generated
-    private static final String File_Name = "./newsparser.csv";
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //Path where file will be generated
+        String File_Name = "./newsparser.csv";
         try (
-                Writer writer = Files.newBufferedWriter(Paths.get(File_Name));) {
+                Writer writer = Files.newBufferedWriter(Paths.get(File_Name))) {
             Parser parser = new Parser();
             ArrayList<PageElements> elements = parser.getPageElements();
             //writing ArrayList as CSV file using OpenCSV

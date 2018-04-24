@@ -11,27 +11,27 @@ import java.util.ArrayList;
 //Class for getting previous parsed data by date and time
 @WebServlet("/ParsingDatabase")
 public class ParsingDatabase extends HttpServlet {
-    private ArrayList<PageElements> pageElementsList = new ArrayList<>();
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<PageElements> pageElements = new ArrayList<>();
 
         String date = request.getParameter("parsingdate");
         try {
-            getPageElementsFromDatabase(date);
+            pageElements = getPageElementsFromDatabase(date);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        request.getServletContext().setAttribute("pageElementsByDate", pageElementsList);
+        request.getServletContext().setAttribute("pageElementsByDate", pageElements);
 
         request.getRequestDispatcher("/archive.jsp").forward(request, response);
 
     }
 
-    private void getPageElementsFromDatabase(String date) throws SQLException, ClassNotFoundException, IOException {
+    private ArrayList<PageElements> getPageElementsFromDatabase(String date) throws SQLException, ClassNotFoundException, IOException {
+        ArrayList<PageElements> pageElementsList = new ArrayList<>();
 
-        //Makes list clear each time when invoke, this saves from duplicate info in archive.jsp
-        pageElementsList.clear();
         Connection connection = DatabaseInitializer.getConnection();
 
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM newsparser WHERE parsedatetime =(?)");
@@ -52,5 +52,7 @@ public class ParsingDatabase extends HttpServlet {
 
         }
         connection.close();
-        }
+        return pageElementsList;
+    }
 }
+
