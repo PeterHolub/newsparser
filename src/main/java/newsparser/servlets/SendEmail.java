@@ -1,4 +1,4 @@
-package newsparser.email;
+package newsparser.servlets;
 
 import newsparser.properties.PropertiesFile;
 
@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-//Class for sending e-mail
+//Servlet for sending e-mail
 @WebServlet("/SendEmail")
 public class SendEmail extends HttpServlet {
 

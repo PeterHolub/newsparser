@@ -22,7 +22,7 @@
 <c:if test="${!empty dataList}">
 
     <div class="buttons">
-        <form method="post" action="${pageContext.servletContext.contextPath}/ParsingDatabase"
+        <form method="post" action="${pageContext.servletContext.contextPath}/GetDataByDates"
               style="text-align: center">
             <table>
 

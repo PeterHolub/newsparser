@@ -14,18 +14,18 @@
 <body>
 <h1 style="color: #528ecc" align="center">News parser for http://www.pravda.com.ua</h1>
 
-<form action="${pageContext.servletContext.contextPath}/ParsingDates" method="post" style="text-align: right">
+<form action="${pageContext.servletContext.contextPath}/GetDates" method="post" style="text-align: right">
 
     <button type="submit" class="dataButtons">PreviousResults</button>
 </form>
 
 <div class="buttons">
-    <form action="${pageContext.servletContext.contextPath}/Main" method="post">
+    <form action="${pageContext.servletContext.contextPath}/MainServlet" method="post">
         <input type="hidden" name="button" value="start"/>
         <button type="submit" class="myButton">Start</button>
     </form>
 
-    <form action="${pageContext.servletContext.contextPath}/Main" method="post">
+    <form action="${pageContext.servletContext.contextPath}/MainServlet" method="post">
         <input type="hidden" name="button" value="clean"/>
         <button type="submit" class="myButton">Clean</button>
     </form>
@@ -104,7 +104,7 @@
 <c:if test="${!empty pageElementsList}">
 
     <div class="buttons">
-        <form action="${pageContext.servletContext.contextPath}/CSVFileGenerator" method="post">
+        <form action="${pageContext.servletContext.contextPath}/SaveToCSV" method="post">
             <input type="hidden" name="button" value="start"/>
             <button type="submit" class="dataButtons">Safe to CSV</button>
         </form>

@@ -1,11 +1,11 @@
-package newsparser.database;
+package newsparser.util;
 
 import newsparser.properties.PropertiesFile;
 import java.io.IOException;
 import java.sql.*;
 
 //Class for Database connection
-public class DatabaseInitializer {
+public class DatabaseConnection {
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
         PropertiesFile propertiesFile = new PropertiesFile();
