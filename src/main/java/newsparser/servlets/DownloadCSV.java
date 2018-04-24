@@ -1,12 +1,12 @@
-package newsparser.csv;
+package newsparser.servlets;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
-//Class for file download
-@WebServlet("/CSVFileDownload")
-public class CSVFileDownload extends HttpServlet {
+//Servlet for file download
+@WebServlet("/DownloadCSV")
+public class DownloadCSV extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

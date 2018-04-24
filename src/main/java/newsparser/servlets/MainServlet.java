@@ -1,3 +1,5 @@
+package newsparser.servlets;
+
 import newsparser.model.PageElements;
 import newsparser.parser.Parser;
 import javax.servlet.ServletException;
@@ -7,8 +9,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 //Main Servlet of App (Start and Clear buttons functions)
-@WebServlet("/Main")
-public class Main extends HttpServlet {
+@WebServlet("/MainServlet")
+public class MainServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Parser parser = new Parser();
