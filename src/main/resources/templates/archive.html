@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link th:href="@{/style.css}" rel="stylesheet"
+          type="text/css">
+</head>
+<body>
+<h1 style="color:red" align="center"> Previous Parsing Data</h1>
+<form th:action="@{/index}" method="get" style="text-align: right">
+
+    <button type="submit" class="dataButtons">Back To Main Page</button>
+</form>
+
+
+<div th:if ="${not #lists.isEmpty(parsingDates)}">
+
+    <div class="buttons">
+        <form method="post" th:action="@{/getDataByDates}"
+              style="text-align: center">
+            <table>
+
+                <tr>
+                    <td>Select Date:</td>
+                    <td>
+                        <select name="parsingdate" id="parsingdate" title="parsingdate">
+                            <option th:each="current:${parsingDates}"
+                                    th:value="${current.getParsingDates()}" th:text="${current.getParsingDates()}"></option>
+
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Show Results" class="myButton" >
+                    </td>
+
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+</div>
+
+<table>
+    <tr th:if="${not #lists.isEmpty(pageElementsByDate)}">
+        <th>Index number</th>
+        <th>Date & Time of Parsing</th>
+        <th>News Time</th>
+        <th>News Header</th>
+        <th>News Text</th>
+        <th>News Mark</th>
+    </tr>
+
+    <th:block th:each="current,iter : ${pageElementsByDate}">
+
+        <tr>
+            <td th:text="${iter.count}">
+
+            </td>
+
+            <td th:text="${current.parsingDateTime}">
+
+            </td>
+
+            <td th:text="${current.time}">
+
+            </td>
+
+            <td th:utext="${current.headerUrl}">
+
+            </td>
+            <th:block th:switch="${current.style}">
+                <th:block th:case="'bold'">
+                    <td>
+                        <b th:text="${current.subtitle}"></b>
+                    </td>
+                </th:block>
+                <th:block th:case="'red'">
+                    <td>
+                        <font color="red" th:text="${current.subtitle}"></font>
+                    </td>
+
+                </th:block>
+                <th:block th:case="'default'">
+                    <td th:text="${current.subtitle}"></td>
+
+                </th:block>
+            </th:block>
+            <td>
+                <a href th:utext="${current.mark}"> </a>
+            </td>
+        </tr>
+
+    </th:block>
+</table>
+</body>
+</html>

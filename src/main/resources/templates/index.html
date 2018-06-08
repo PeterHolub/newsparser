@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/style.css}" rel="stylesheet"
+          type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+<h1 style="color: #528ecc" align="center">News parser for http://www.pravda.com.ua</h1>
+
+<form th:action="@{/previousResults}" method="post" style="text-align:right">
+
+    <button type="submit" class="dataButtons">PreviousResults</button>
+</form>
+
+<div class="buttons">
+    <form th:action="@{/index}" method="post">
+        <input type="hidden" name="button" value="true"/>
+        <button type="submit" class="myButton">Start</button>
+    </form>
+
+    <form th:action="@{/index}" method="post">
+        <input type="hidden" name="button" value="false"/>
+        <button type="submit" class="myButton">Clean</button>
+    </form>
+
+    <table>
+
+        <tr th:if="${not #lists.isEmpty(session.pageElements)}">
+            <th>Index number</th>
+            <th>Date & Time of Parsing</th>
+            <th>News Time</th>
+            <th>News Header</th>
+            <th>News Text</th>
+            <th>News Mark</th>
+        </tr>
+
+        <th:block th:each="current,iter : ${session.pageElements}">
+
+            <tr>
+                <td th:text="${iter.count}">
+
+                </td>
+
+                <td th:text="${current.parsingDateTime}">
+
+                </td>
+
+                <td th:text="${current.time}">
+
+                </td>
+
+                <td th:utext="${current.headerUrl}">
+
+                </td>
+                <th:block th:switch="${current.style}">
+                    <th:block th:case="'bold'">
+                        <td>
+                            <b th:text="${current.subtitle}"></b>
+                        </td>
+                    </th:block>
+                    <th:block th:case="'red'">
+                        <td>
+                            <font color="red" th:text="${current.subtitle}"></font>
+                        </td>
+
+                    </th:block>
+                    <th:block th:case="'default'">
+                        <td th:text="${current.subtitle}"></td>
+
+                    </th:block>
+                </th:block>
+                <td>
+                    <a href th:utext="${current.mark}"> </a>
+                </td>
+            </tr>
+
+        </th:block>
+
+    </table>
+
+    <div th:if="${not #lists.isEmpty(session.pageElements)}">
+
+        <div class="buttons">
+            <form th:action="@{/saveToCSV}" method="post">
+                <input type="hidden" name="button" value="start"/>
+                <button type="submit" class="dataButtons">Safe to CSV</button>
+            </form>
+
+            <h3 style="color: red" th:text="${csvSaved}"></h3>
+            <h3 th:utext="${download}"></h3>
+            <h3 style="color: red" th:text="${databaseSaved}"></h3>
+
+            <form th:action="@{/saveToDatabase}" method="post">
+                <input type="hidden" name="button"/>
+                <button type="submit" class="dataButtons">Safe to Database</button>
+            </form>
+
+
+            <div th:if="${download !=null}">
+
+                <form th:action="@{/sendEmail}" method="post">
+
+                    <h2 style="color: #79bbff" align="center">Send e-mail To:</h2>
+
+                    <input type="text" name="email" required value="" size="16"/>
+
+                    <input type="submit" value="Send e-mail" class="myButton" align="middle">
+
+                </form>
+
+
+            </div>
+            <h3 style="color: #79bbff" th:text="${emailSent}"></h3>
+        </div>
+    </div>
+</div>
+</body>
+</html>
