@@ -1,5 +1,10 @@
-# Created by .ignore support plugin (hsz.mobi)
-/.idea/
-/newsparser.iml
 /target/
-/db/
+!.mvn/wrapper/maven-wrapper.jar
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
